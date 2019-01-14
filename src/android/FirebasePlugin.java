@@ -189,6 +189,12 @@ public class FirebasePlugin extends CordovaPlugin {
         } else if (action.equals("clearAllNotifications")) {
             this.clearAllNotifications(callbackContext);
             return true;
+        } else if (action.equals("logMessage")) {
+            logMessage(args, callbackContext);
+            return true;
+        } else if (action.equals("sendCrash")) {
+            sendCrash(args, callbackContext);
+            return true;
         }
 
         return false;
@@ -487,6 +493,26 @@ public class FirebasePlugin extends CordovaPlugin {
         });
     }
 
+    private void logMessage(final JSONArray data,
+                        final CallbackContext callbackContext) {
+
+        String message = data.optString(0);
+        Crashlytics.log(message);
+        callbackContext.success();
+    }
+
+    private void sendCrash(final JSONArray data,
+						   final CallbackContext callbackContext) {
+
+		this.cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				throw new RuntimeException("This is a crash");
+			}
+		});
+	}
+
+
     private void setCrashlyticsUserId(final CallbackContext callbackContext, final String userId) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -729,7 +755,7 @@ public class FirebasePlugin extends CordovaPlugin {
                             try {
                                 String verificationId = null;
                                 String code = null;
-								
+
                                 Field[] fields = credential.getClass().getDeclaredFields();
                                 for (Field field : fields) {
                                     Class type = field.getType();
@@ -796,7 +822,7 @@ public class FirebasePlugin extends CordovaPlugin {
                             callbackContext.sendPluginResult(pluginresult);
                         }
                     };
-	
+
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(number, // Phone number to verify
                             timeOutDuration, // Timeout duration
                             TimeUnit.SECONDS, // Unit of timeout
@@ -809,7 +835,7 @@ public class FirebasePlugin extends CordovaPlugin {
             }
         });
     }
-	
+
     private static String getPrivateField(PhoneAuthCredential credential, Field field) {
         try {
             field.setAccessible(true);
