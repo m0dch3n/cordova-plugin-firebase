@@ -31,7 +31,7 @@ Note: If you have XML Namespace issues, which I encountered when trying to build
 
 ## Notification Colors
 
-To add color to the custom icon, you will need to (create a color definition)[#create-a-color-definition] and (configure firebase color)[#configure-firebase-color].
+To add color to the custom icon, you will need to [create a color definition](#create-a-color-definition) and [configure firebase color](#configure-firebase-color).
 
 ### Create a Color Definition
 To add color to the custom icon, you will need to [create a color definition](#create-a-color-definition) and [configure firebase color](#configure-firebase-color).
