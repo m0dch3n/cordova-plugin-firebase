@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-firebase-m0dch3n" version="1.0.0"
+<plugin id="cordova-plugin-firebase-m0dch3n" version="1.0.1"
 xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>Google Firebase Plugin</name>
 
 	<license>MIT</license>
 
-	<dependency id="cordova-plugin-cocoapod-support" version="1.9.0-m0dch3n" />
+	<dependency id="cordova-plugin-cocoapod-support-m0dch3n" version="1.0.0" />
 
 	<engines>
 		<engine name="cordova" version=">=3.2.0" />
